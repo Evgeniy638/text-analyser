@@ -1,5 +1,5 @@
 import { reducerApp } from './reducers/reducerApp';
-import { configureStore, ThunkAction, Action, createStore } from '@reduxjs/toolkit';
+import { ThunkAction, Action, createStore } from '@reduxjs/toolkit';
 
 export const store = createStore(reducerApp);
 

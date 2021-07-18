@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { apiTextstrings } from './api';
 import './App.css';
 import { useAppDispatch } from './hooks/useAppDispatch';
 import { useAppSelector } from './hooks/useAppSelector';
+import { letters } from './letters';
 import { actionCreators } from './store/action-creators';
 import { selectors } from './store/selectors';
+import { ISavedText } from './store/types/typeApp';
 
 function App() {
     const indefecators = useAppSelector(selectors.getIndefecators);
@@ -11,8 +14,24 @@ function App() {
 
     const dispatch = useAppDispatch();
 
+    const saveText = useCallback((savedText: ISavedText) => {
+        dispatch(actionCreators.saveText(savedText));
+    }, [dispatch]);
+
     const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         dispatch(actionCreators.changeIndefecators(e.target.value));
+    }
+
+    const onClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+        letters.getArrIndefecators(indefecators).forEach(async (id) => {
+            const text = await apiTextstrings.getTextById(id);
+            
+            saveText({
+                text,
+                numberVowels: letters.findCountVowels(text),
+                numberWord: letters.findCountLetters(text)
+            });
+        });
     }
 
     return (
@@ -22,7 +41,7 @@ function App() {
                     <span className="input-container__label-text">Индефекаторы строк: </span>
                     <input value={indefecators} onChange={onChange} />
                 </label>
-                <button>Подсчитать</button>
+                <button onClick={onClick}>Подсчитать</button>
             </div>
 
             <table className="table">

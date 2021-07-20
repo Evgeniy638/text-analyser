@@ -7,19 +7,14 @@ export const apiTextstrings = {
         headers.append('TMG-Api-Key', '0J/RgNC40LLQtdGC0LjQutC4IQ==');
         headers.append('Origin','http://localhost:3000');
         
-        const responce = await fetch(`http://tmgwebtest.azurewebsites.net/api/textstrings/${id}`, {
-            // mode: 'no-cors',
-            credentials: 'include',
+        const responce = await fetch(`https://tmgwebtest.azurewebsites.net/api/textstrings/${id}`, {
             headers: {
+                'Origin': ' http://localhost:3000',
                 'TMG-Api-Key': '0J/RgNC40LLQtdGC0LjQutC4IQ=='
             }
         });
 
-        console.log(responce)
-
         let res = await responce.json();
-
-        console.log(res);
 
         return res.text;
     }

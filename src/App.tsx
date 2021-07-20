@@ -23,6 +23,8 @@ function App() {
     }
 
     const onClickCalc: React.MouseEventHandler<HTMLButtonElement> = () => {
+        dispatch(actionCreators.deleteTexts());
+
         letters.getArrIndefecators(indefecators).forEach(async (id) => {
             const text = await apiTextstrings.getTextById(id);
             
@@ -34,10 +36,6 @@ function App() {
         });
     }
 
-    const onClickDelete: React.MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-        dispatch(actionCreators.deleteTexts());
-    }, [dispatch]);
-
     return (
         <div className="App">
             <div className="input-container">
@@ -46,7 +44,6 @@ function App() {
                     <input value={indefecators} onChange={onChange} />
                 </label>
                 <button className="input-container__button" onClick={onClickCalc}>Подсчитать</button>
-                <button className="input-container__button" onClick={onClickDelete}>Очистить таблицу</button>
             </div>
 
             <table className="table">

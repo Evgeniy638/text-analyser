@@ -17,6 +17,10 @@
     margin-right: 5px;
 }
 
+.input-container__button {
+    margin-right: 5px;
+}
+
 .table {
     width: 100%;
     box-sizing: border-box;

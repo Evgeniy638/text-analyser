@@ -7,6 +7,11 @@ const initialState: IStateApp = {
 
 export const reducerApp = (state:IStateApp = initialState, action: ActionApp): IStateApp => {
     switch (action.type) {
+        case ActionType.DELETE_TEXTS:
+            return {
+                ...state,
+                arrSavedText: []
+            }
         case ActionType.CHANGE_INDEFECATORS:
             return {
                 ...state,

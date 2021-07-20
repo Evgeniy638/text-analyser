@@ -11,5 +11,10 @@ export const actionCreators = {
             type: ActionType.SAVE_TEXT,
             savedText
         }
+    },
+    deleteTexts(): ActionApp {
+        return {
+            type: ActionType.DELETE_TEXTS
+        }
     }
 }

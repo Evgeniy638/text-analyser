@@ -11,7 +11,8 @@ export interface IStateApp {
 
 export enum ActionType {
     CHANGE_INDEFECATORS = "CHANGE_INDEFECATORS",
-    SAVE_TEXT = "SAVE_TEXT"
+    SAVE_TEXT = "SAVE_TEXT",
+    DELETE_TEXTS = "DELETE_TEXTS"
 }
 
 interface IActionChangeIndefecators {
@@ -24,5 +25,10 @@ interface IActionSaveText {
     savedText: ISavedText
 }
 
+interface IActionDeletTexts {
+    type: ActionType.DELETE_TEXTS
+}
+
 export type ActionApp = IActionChangeIndefecators |
-    IActionSaveText;
+    IActionSaveText |
+    IActionDeletTexts;

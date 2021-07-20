@@ -22,7 +22,7 @@ function App() {
         dispatch(actionCreators.changeIndefecators(e.target.value));
     }
 
-    const onClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const onClickCalc: React.MouseEventHandler<HTMLButtonElement> = () => {
         letters.getArrIndefecators(indefecators).forEach(async (id) => {
             const text = await apiTextstrings.getTextById(id);
             
@@ -34,6 +34,10 @@ function App() {
         });
     }
 
+    const onClickDelete: React.MouseEventHandler<HTMLButtonElement> = useCallback(() => {
+        dispatch(actionCreators.deleteTexts());
+    }, [dispatch]);
+
     return (
         <div className="App">
             <div className="input-container">
@@ -41,7 +45,8 @@ function App() {
                     <span className="input-container__label-text">Индефекаторы строк: </span>
                     <input value={indefecators} onChange={onChange} />
                 </label>
-                <button onClick={onClick}>Подсчитать</button>
+                <button className="input-container__button" onClick={onClickCalc}>Подсчитать</button>
+                <button className="input-container__button" onClick={onClickDelete}>Очистить таблицу</button>
             </div>
 
             <table className="table">

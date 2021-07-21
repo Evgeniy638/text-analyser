@@ -1,36 +1,61 @@
-import { ILanguageDictionary } from './languages/types';
-import { languages } from './languages/index';
-
+// поддерживают языки:
+// Russian, English,
+// French, German,
+// Polish, Italian 
+// Spanish, Swedish
+// Norwegian, Ukrainian
+// Belarusian 
 export const letters = {
-    getArrIndefecators(indefecators: string): number[] {
-        console.log(
-            indefecators,
-            indefecators.replace(/[^0-9,;]/gi, ""),
-            indefecators.replace(/[^0-9,;]/gi, "").split(/[,;]/),
-            indefecators.replace(/[^0-9,;]/gi, "").split(/[,;]/).map(Number)
-        )
-        return indefecators
-            .replace(/[^0-9,;]/gi, "")
-            .split(/[,;]/)
-            .map(Number);
+    // получает строку, которое введено в input
+    // возвращает множество уникальных чисел (индефекаторов)
+    getArrIndefecators(indefecators: string): Set<number> {
+        return new Set(
+            indefecators
+                .replace(/[^0-9,;-]/gi, "")
+                .split(/[,;]/)
+                .map(Number)
+        );
     },
 
+    // возвращает количество букв в text
     findCountLetters(text: string): number {
-        // ищет буквы из любого алфавита вне зависимости от регистра
-        const letters = text.match(/[\p{Alpha}]/gi);
-        return letters ?letters.length :0;
+        const regexp = new RegExp([
+            "[",
+            "А-Я",
+            "A-Z",
+            "àâäôéèëêïîçùûüÿæœÀÂÄÔÉÈËÊÏÎŸÇÙÛÜÆŒ",
+            "äöüßÄÖÜ",
+            "ąćęłńóśźżĄĆĘŁŃÓŚŹŻ",
+            "àèéìíîòóùúÀÈÉÌÍÎÒÓÙÚ",
+            "áéíñóúüÁÉÍÑÓÚÜ",
+            "äöåÄÖÅ",
+            "æøåÆØÅ",
+            "ЇїІіЄєҐґ",
+            "ёа-зй-шы-яЁА-ЗЙ-ШЫІіЎў",
+            "]"
+        ].join(""), "gi");
+        const letters = text.match(regexp);
+        return letters ? letters.length : 0;
     },
 
-    // возвращает количество глассных букв (возможные гласные хранятся в словаре languages) в text
+    // возвращает количество глассных букв  в text
     findCountVowels(text: string): number {
-        let count: number = 0;
-
-        languages.forEach((lang: ILanguageDictionary) => {
-            const letters = text.match(lang.vowels);
-            count += letters ?letters.length :0;
-        });
-
-
-        return count;
+        const regexp = new RegExp([
+            "[",
+            "ауоыиэяюёе",
+            "AEIOUY",
+            "àâäôéèëêïîçùûüÿæœÀÂÄÔÉÈËÊÏÎŸÇÙÛÜÆŒ",
+            "äöüßÄÖÜ",
+            "ąćęłńóśźżĄĆĘŁŃÓŚŹŻ",
+            "àèéìíîòóùúÀÈÉÌÍÎÒÓÙÚ",
+            "áéíóúüÁÉÍÓÚÜ",
+            "äöåÄÖÅ",
+            "æøåÆØÅ",
+            "ЇїІіЄє",
+            "ІіЎў",
+            "]"
+        ].join(""), "gi");
+        const letters = text.match(regexp);
+        return letters ? letters.length : 0;
     }
 }

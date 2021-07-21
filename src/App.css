@@ -9,6 +9,14 @@
     margin-bottom: 10px;
 }
 
+.input-container__inpunt {
+    box-sizing: border-box;
+}
+
+.input-container__inpunt_error {
+    border: 1px solid rgb(255, 96, 96);
+}
+
 .input-container__label {
     margin-right: 5px;
 }
@@ -43,6 +51,14 @@
 .table__td {
     padding: 10px 5px;
     box-sizing: border-box;
+}
+
+.error-message {
+    padding: 10px 20px;
+    border: 2px solid rgb(255, 96, 96);
+    background-color: rgb(255, 200, 200);
+    color: rgb(255, 96, 96);
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {

@@ -1,4 +1,5 @@
 export interface ISavedText {
+    id: number
     text: string
     numberWord: number
     numberVowels: number

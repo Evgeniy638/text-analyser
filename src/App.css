@@ -1,39 +1,78 @@
 .App {
-  text-align: center;
+    padding: 0 5px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input-container {
+    margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.input-container__inpunt {
+    box-sizing: border-box;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.input-container__inpunt_error {
+    border: 1px solid rgb(255, 96, 96);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.input-container__label {
+    margin-right: 5px;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.input-container__label-text {
+    margin-right: 5px;
+}
+
+.input-container__button {
+    margin-right: 5px;
+}
+
+.table {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.table__element_desktop {
+    display: none;
+}
+
+.table__text-cell {
+    min-width: 150px;
+}
+
+.table__number-cell {
+    width: 150px;
+    text-align: center;
+}
+
+.table__td {
+    padding: 10px 5px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    padding: 10px 20px;
+    border: 2px solid rgb(255, 96, 96);
+    background-color: rgb(255, 200, 200);
+    color: rgb(255, 96, 96);
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .App {
+        padding: 0;
+        margin: 20px auto;
+        width: 700px;
+    }
+
+    .table__element_mobile {
+        display: none;
+    }
+
+    .table__element_desktop {
+        display: initial;
+    }
 }
